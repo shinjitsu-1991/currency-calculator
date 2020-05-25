@@ -1,0 +1,181 @@
+body {
+  font-family: "Roboto";
+}
+
+.app-wrap {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.1);
+}
+
+.radio-button {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;
+  border-radius: 100px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  &__part {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    padding: 8px 15px;
+    text-align: center;
+    font-weight: 500;
+  }
+  &__false {
+    color: red;
+  }
+  &__true {
+    color: green;
+  }
+  &__state {
+    height: calc(100% - 6px);
+    width: calc(50% - 3px);
+    position: absolute;
+    top: 3px;
+    opacity: .1;
+    border-radius: 100px;
+    &.state-move-true {
+      animation: moveToLeft 1s ease-in-out;
+    }
+    &.state-move-false {
+      animation: moveToRight 1s ease-in-out;
+    }
+    &.state-fade-true {
+      animation: fadeToLeft .5s ease-in-out;
+    }
+    &.state-fade-false {
+      animation: fadeToRight .5s ease-in-out;
+    }
+    &.state-from-outside-true {
+      animation: fromOutsideToLeft .7s ease-in-out;
+    }
+    &.state-from-outside-false {
+      animation: fromOutsideToRight .7s ease-in-out;
+    }
+    &.state-move-true,
+    &.state-move-false,
+    &.state-fade-true,
+    &.state-fade-false,
+    &.state-from-outside-true,
+    &.state-from-outside-false {
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+    }
+  }
+}
+
+@keyframes moveToRight {
+  0%{
+    transform: translateX(calc(100% + 6px));
+    background-color: green;
+    right: calc(100% + 3px);
+  }
+  100% {
+    background-color: red;
+    right: calc(0% + 3px);
+    transform: translateX(0%);
+  }
+}
+
+@keyframes moveToLeft {
+  0%{
+    transform: translateX(calc(0% - 3px));
+    background-color: red;
+    right: calc(0% + 3px);
+  }
+  100% {
+    transform: translateX(calc(100% + 6px));
+    right: calc(100% + 3px);
+    background-color: green;
+  }
+}
+
+@keyframes fadeToRight {
+  0%{
+    background-color: green;
+    left: 3px;
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+    background-color: red;
+    right: 3px;
+  }
+  100% {
+    background-color: red;
+    right: 3px;
+    opacity: .1;
+  }
+}
+
+@keyframes fadeToLeft {
+  0%{
+    background-color: red;
+    right: 3px;
+    opacity: 0;
+  }
+  50%{
+    opacity: 0;
+    background-color: green;
+    left: 3px;
+  }
+  100% {
+    background-color: green;
+    left: 3px;
+    opacity: .1;
+  }
+}
+
+@keyframes fromOutsideToLeft {
+  0%{
+    background-color: red;
+    right: 3px;
+  }
+  50%{
+    right: -100%;
+    background-color: red;
+  }
+  51%{
+    left: -100%;
+    background-color: green;
+  }
+  100%{
+    left: 3px;
+    background-color: green;
+  }
+}
+
+@keyframes fromOutsideToRight {
+  0%{
+    left: 3px;
+    background-color: green;
+  }
+  50%{
+    left: -100%;
+    background-color: green;
+  }
+  51%{
+    background-color: red;
+    right: -100%;
+  }
+  100%{
+    background-color: red;
+    right: 3px;
+  }
+}
