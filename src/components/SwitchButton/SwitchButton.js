@@ -1,18 +1,18 @@
 import React, {useState} from 'react';
 
-const RadioButton = (props) => {
+const SwitchButton = (props) => {
     const [btnState, setBtnState] = useState(props.initialValue);
 
     const checkerPosition = () => {
-        return `radio-button__state state-${props.animationType}-${btnState}`;
+        return `switch-button__state state-${props.animationType}-${btnState}`;
     }
 
     return(
-        <div onClick={() => setBtnState(!btnState)} className='radio-button'>
-            <div className="radio-button__part radio-button__true">
+        <div onClick={() => setBtnState(!btnState)} className='switch-button'>
+            <div className="switch-button__part switch-button__true">
                 {props.trueValue}
             </div>
-            <div className="radio-button__part radio-button__false">
+            <div className="switch-button__part switch-button__false">
                 {props.falseValue}
             </div>
             <div className={checkerPosition()}></div>
@@ -20,14 +20,14 @@ const RadioButton = (props) => {
     );
 }
 
-RadioButton.defaultProps = {
+SwitchButton.defaultProps = {
     trueValue: 'is',
     falseValue: 'is not',
     initialValue: true,
     animationType: 'move'
 };
 
-RadioButton.propsType = {
+SwitchButton.propsType = {
     trueValue : (props, propName, componentName) => {
         const value = props[propName];
         if(typeof value === "string") {
@@ -59,4 +59,4 @@ RadioButton.propsType = {
 
 };
 
-export default RadioButton;
+export default SwitchButton;

@@ -1,11 +1,11 @@
 import React from 'react';
-import RadioButton from 'components/RadioButton';
+import SwitchButton from 'components/SwitchButton';
 import 'styles/styles.scss'
 
 const App = () => {
     return(
         <div className='app-wrap'>
-            <RadioButton animationType='from-outside' />
+            <SwitchButton animationType='from-outside' />
         </div>
     );
 }
