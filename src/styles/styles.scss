@@ -37,7 +37,8 @@ body {
     padding: 8px 15px;
     text-align: center;
     font-weight: 500;
-    word-break: break-word;
+    box-sizing: content-box;
+    min-width: max-content;
   }
   &__false {
     color: red;

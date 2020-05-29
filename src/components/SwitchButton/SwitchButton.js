@@ -1,15 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 const SwitchButton = (props) => {
     const [btnState, setBtnState] = useState(props.initialValue);
+    let textInput = React.createRef();
 
     const checkerPosition = () => {
         return `switch-button__state state-${props.animationType}-${btnState}`;
     }
 
+    useEffect(()=>{
+        let maxWidth = 0;
+        [].forEach.call(textInput.current.children,(item) => {
+            if(item.clientWidth > maxWidth) {
+                maxWidth = item.clientWidth;
+            }
+        })
+        textInput.current.style.width = `${maxWidth*2}px`;
+    })
+
     return(
-        <div onClick={() => setBtnState(!btnState)} className='switch-button'>
+        <div ref={textInput} onClick={() => setBtnState(!btnState)} className='switch-button'>
             <div className="switch-button__part switch-button__true">
                 {props.trueValue}
             </div>
