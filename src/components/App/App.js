@@ -5,7 +5,7 @@ import 'styles/styles.scss'
 const App = () => {
     return(
         <div className='app-wrap'>
-            <SwitchButton animationType='from-outside' />
+            <SwitchButton />
         </div>
     );
 }

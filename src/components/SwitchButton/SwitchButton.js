@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 
 const SwitchButton = (props) => {
     const [btnState, setBtnState] = useState(props.initialValue);
@@ -27,36 +28,11 @@ SwitchButton.defaultProps = {
     animationType: 'move'
 };
 
-SwitchButton.propsType = {
-    trueValue : (props, propName, componentName) => {
-        const value = props[propName];
-        if(typeof value === "string") {
-            return null;
-        }
-        return new TypeError(`${componentName}: ${propName} must be a string`);
-    },
-    falseValue : (props, propName, componentName) => {
-        const value = props[propName];
-        if(typeof value === "string") {
-            return null;
-        }
-        return new TypeError(`${componentName}: ${propName} must be a string`);
-    },
-    initialValue : (props, propName, componentName) => {
-        const value = props[propName];
-        if(typeof value === "boolean") {
-            return null;
-        }
-        return new TypeError(`${componentName}: ${propName} must be a boolean`);
-    },
-    animationType : (props, propName, componentName) => {
-        const value = props[propName];
-        if(value === "move" || value === "fade") {
-            return null;
-        }
-        return new TypeError(`${componentName}: ${propName} must be 'move' or 'fade' or 'from-outside'`);
-    },
-
+SwitchButton.propTypes = {
+    trueValue : PropTypes.string,
+    falseValue : PropTypes.string,
+    initialValue : PropTypes.bool,
+    animationType : PropTypes.oneOf(['fade', 'from-outside', 'move']),
 };
 
 export default SwitchButton;
